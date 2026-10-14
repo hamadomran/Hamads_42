@@ -13,11 +13,12 @@
 #include <stdio.h>
 int main(void) {
 
-    char c = '9';
-    int test;
+    char str[] = "Hello";
+    char test[10];
+    char c = 'l';
 
-    test = ft_isdigit(c);
+    test = ft_strchr(str, c);
 
-    printf("%d", test);
+    printf("%s", str);
 
 }
