@@ -11,14 +11,12 @@
 /* ************************************************************************** */
 #include "libft.h"
 #include <stdio.h>
-int main(void) {
-
-    char str[] = "Hello";
-    char test[10];
-    char c = 'l';
-
-    test = ft_strchr(str, c);
-
-    printf("%s", str);
-
+#include <string.h>
+int	main(void)
+{
+    char *test;
+    char *hay="abbabacaac";
+    char *needle="aa";
+    test = ft_strnstr(hay,  needle, 5);
+    printf("%c and %ld", *test, test-hay);
 }

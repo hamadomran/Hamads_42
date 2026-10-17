@@ -12,6 +12,7 @@
 
 #ifndef HAMADS_42_LIBFT_H
 #define HAMADS_42_LIBFT_H
+#include <stdio.h>
 
 int ft_isalpha(int c);
 int ft_isdigit(int c);
@@ -21,5 +22,8 @@ int ft_strlen(const char *s);
 int tolower(int c);
 int ft_toupper(int c);
 const char *ft_strchr(const char *s, int c);
+const char *ft_strrchr(const char *s, int c);
+int ft_strncmp(const char *s1, const char *s2, size_t len);
+char *ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 #endif //HAMADS_42_LIBFT_H
