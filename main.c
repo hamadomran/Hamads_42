@@ -14,9 +14,13 @@
 #include <string.h>
 int	main(void)
 {
-    char *test;
-    char *hay="abbabacaac";
-    char *needle="aa";
-    test = ft_strnstr(hay,  needle, 5);
-    printf("%c and %ld", *test, test-hay);
+    char str1[5] = "";
+    char str2[] = "Hello";
+
+    ft_memcpy(str1, str2, sizeof(str2));
+
+    printf("%s", str1);
 }
+
+//void *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+
