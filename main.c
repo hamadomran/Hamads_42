@@ -14,13 +14,13 @@
 #include <string.h>
 int	main(void)
 {
-    char str1[5] = "";
-    char str2[] = "Hello";
+    char source[] = "GeeksForGeeks";
 
-    ft_memcpy(str1, str2, sizeof(str2));
+    char *target = ft_strdup(source);
 
-    printf("%s", str1);
+    printf("%s", target);
 }
 
-//void *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+
+//int ft_memcmp(const void *s1, const void *s2, size_t n)
 
