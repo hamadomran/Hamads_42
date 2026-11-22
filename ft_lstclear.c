@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamaalsh <hamaalsh@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/13 21:38:31 by hamaalsh          #+#    #+#             */
-/*   Updated: 2026/10/13 21:38:31 by hamaalsh         ###   ########.fr       */
+/*   Created: 2026/11/19 17:10:03 by hamaalsh          #+#    #+#             */
+/*   Updated: 2026/11/19 17:10:06 by hamaalsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
-int	main(void)
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-printf("%s", ft_strjoin("Hello", "World"));
+	t_list	*tmp;
+
+	while (*lst != NULL)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
 }
-
-
-//char *ft_strjoin(char const *s1, char const *s2)
-
-

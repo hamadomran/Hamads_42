@@ -1,0 +1,8 @@
+libftTester/
+*.o
+libft.a
+main.c
+test
+en.subject.pdf
+.claude/
+.idea/

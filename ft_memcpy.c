@@ -11,21 +11,19 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-    size_t i;
-    unsigned char * dst_p;
-    unsigned const char * src_p;
+	size_t				i;
+	unsigned char		*dst_p;
+	unsigned const char	*src_p;
 
-    i = 0;
-    dst_p = (unsigned char *)dst;
-    src_p = (unsigned const char *)src;
-
-    while (i < n)
-    {
-        dst_p[i] = src_p[i];
-        i++;
-    }
-
-    return (dst);
+	i = 0;
+	dst_p = (unsigned char *)dst;
+	src_p = (unsigned const char *)src;
+	while (i < n)
+	{
+		dst_p[i] = src_p[i];
+		i++;
+	}
+	return (dst);
 }

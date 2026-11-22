@@ -10,48 +10,81 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-char **ft_split(char const *s, char c) {
 
-    int size;
-    int i;
-    int k;
-    int j;
-    int j_o;
-    int s_count;
-    char **ptr;
+static char	**ft_free_all(char **ptr, int k)
+{
+	while (k > 0)
+	{
+		k--;
+		free(ptr[k]);
+	}
+	free(ptr);
+	return (NULL);
+}
 
-    k = 0;
-    size = 0;
-    j_o = 0;
-    j = 0;
-    i = 0;
-    s_count = 0;
+static int	ft_count_words(char const *s, char c)
+{
+	int	i;
+	int	count;
 
-    if (s[i] != c && s[i] != '\0')
-        s_count++;
+	count = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+			count++;
+		i++;
+	}
+	return (count);
+}
 
-    i = 1;
-    while (s[i] != '\0') {
-        if (s[i] != c && s[i-1] == c)
-            s_count++;
-        i++;
-    }
+static char	*ft_make_word(char const *s, char c)
+{
+	char	*word;
+	int		size;
+	int		i;
 
-    ptr = malloc((s_count + 1) * sizeof(char *));
+	size = 0;
+	while (s[size] != c && s[size] != '\0')
+		size++;
+	word = malloc((size + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
 
-    //We allocated memory for the array of pointers. No we need to go through the string and allocate for each substring(seperated by the delimiter)
-    while (s[j] != '\0') {
-        if (s[j] != c && s[j-1] == c) {
-            size = 0;
-            while (s[j] != c && s[j] != '\0') {
-                j++;
-                size++;
-            }
-            ptr[k] = malloc(size * sizeof(char));
-            k++;
-        }
-        j++;
-    }
+char	**ft_split(char const *s, char c)
+{
+	char	**ptr;
+	int		j;
+	int		k;
 
-
+	ptr = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (ptr == NULL)
+		return (NULL);
+	j = 0;
+	k = 0;
+	while (s[j] != '\0')
+	{
+		if (s[j] != c && (j == 0 || s[j - 1] == c))
+		{
+			ptr[k] = ft_make_word(&s[j], c);
+			if (ptr[k] == NULL)
+				return (ft_free_all(ptr, k));
+			k++;
+			while (s[j] != c && s[j] != '\0')
+				j++;
+		}
+		else
+			j++;
+	}
+	ptr[k] = NULL;
+	return (ptr);
 }

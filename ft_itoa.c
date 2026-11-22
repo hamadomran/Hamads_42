@@ -11,60 +11,45 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char *ft_itoa(int n) {
+static int	ft_count_chars(long n)
+{
+	int	count;
 
-    int count;
-    char *ptr;
-    int neg;
-    long m;
-    long k;
-    int j;
-
-    neg = 0;
-    j = 0;
-    m = n;
-    k = n;
-    count = 0;
-
-    if (k == 0)
-        count++;
-
-    if (k < 0) {
-        count++;
-        k = -k;
-    }
-
-    while (k != 0) {
-        k = k / 10;
-        count++;
-    }
-
-    ptr = malloc((count+1) * sizeof(char));
-    if (ptr == NULL)
-        return (NULL);
-
-    if (m < 0) {
-        neg = 1;
-        m = -m;
-    }
-
-    if (m == 0) {
-        ptr[0] = '0';
-        ptr[1] = '\0';
-        return (ptr);
-    }
-
-    ptr[count - j] = '\0';
-    while (m != 0) {
-        ptr[count - 1 - j] = (m % 10) + '0';
-        m = m / 10;
-        j++;
-    }
-
-    if (neg == 1)
-        ptr[count - 1 - j] = '-';
-
-    return (ptr);
-
+	count = 0;
+	if (n <= 0)
+		count = 1;
+	while (n != 0)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
 }
 
+char	*ft_itoa(int n)
+{
+	char	*ptr;
+	long	m;
+	int		count;
+	int		j;
+
+	m = n;
+	count = ft_count_chars(m);
+	ptr = malloc((count + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	if (m < 0)
+	{
+		ptr[0] = '-';
+		m = -m;
+	}
+	ptr[count] = '\0';
+	j = 0;
+	while (m != 0 || j == 0)
+	{
+		ptr[count - 1 - j] = (m % 10) + '0';
+		m = m / 10;
+		j++;
+	}
+	return (ptr);
+}
